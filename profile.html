@@ -29,9 +29,7 @@
         <dd><a href="https://www.w3.org/TR/vocab-dcat-3/">DCAT</a> & <a href="https://schema.org">schema.org</a></dd>
         <dt>Definition</dt>
         <dd>
-          <p>This is a profile that mandates minimal metadata for the cataloguing of (sub)catalogues.</p>
-          <p>It is a profile of the well-known <a href="https://www.w3.org/TR/vocab-dcat-3/">DCAT</a>, the semantic data cataloguing vocabulary standard and also  & <a href="https://schema.org">schema.org</a>, the widely-used, general-purpose web object description vocabulary which also has data cataloguing elements.</p>
-          <p>This profile is used by multiple Australian government and international catalogues that contain other catalogues and is entirely generic, i.e. the additional constraints are not Australian or government-specific but just ensure certain technical model capabilities in the data.</p>
+          <p>This is a profile that mandates minimal metadata for generic resources that are catalogued.</p>
         </dd>
         <dt>Created</dt>
         <dd>2025-05-30</dd>
@@ -50,10 +48,27 @@
           <ol>
             <li><a href="#https://linked.data.gov.au/def/bcp/spec">Specification</a></li>
             <li><a href="#https://linked.data.gov.au/def/bcp/validator">Validator</a></li>
+            <li><a href="#https://linked.data.gov.au/def/bcp/examples">Examples</a></li>
             <li><a href="#https://linked.data.gov.au/def/bcp/repo">Profile code repository</a></li>
           </ol>
         </dd>
       </dl>
+    </section>
+    <section id="introduction">
+      <h2>Introduction</h2>
+      <p>Cataloging of resources according to this profile depends on the use of <a href="https://en.wikipedia.org/wiki/Semantic_Web">Semantic Web</a> methods. This profile mandates that a minimal set of several Semantic Web standards' elements be used.</p>
+      <p>The models are the <a href="https://www.w3.org">W3C</a>'s <a href="https://www.w3.org/TR/vocab-dcat-3/">Data Catalog Vocabulary, DCAT</a>, and also & <a href="https://schema.org">schema.org</a>, the widely-used, general-purpose web object description vocabulary which also defines DCAT-like data cataloguing elements.</p>
+      <p>Other, more specialised, profiles exist that mandate more specialised Semantic Web models' elements to describe particular kinds of catalogued objects, in particular:</p>
+      <ul>
+        <li><a href="https://linked.data.gov.au/def/ontpub">Ontology Publication Profile, OntPub</a>: to characterise Semantic Web ontologies</li>
+        <li><a href="https://linked.data.gov.au/def/vocpub">Vocabulary Publication Profile, VocPub</a>: to characterise classification vocabularies</li>
+      </ul>
+      <p>These more specialised profiles also mandate the same basic metadata mandated here.</p>
+      <p>This profile is used by multiple Australian government and international catalogues that contain other catalogues and is entirely generic, i.e. the additional constraints are not Australian or government-specific but just ensure certain technical model capabilities in the data.</p>
+      <h4>Updates</h4>
+      <p>This profile is always open to being updated to match modern cataloguing requirements, so if you would like to contribute to or challenge its rules, please contact its developers via the <a href="#https://linked.data.gov.au/def/bcp/repo">Code Repository indicated below</a> which contains an Issues tracker.</p>
+      <h4>Contact</h4>
+      <p>See the <a href="#https://linked.data.gov.au/def/bcp/repo">Code Repository</a>'s README page.</p>
     </section>
     <section id="resources">
       <h2>Profile Resources</h2>
@@ -98,20 +113,34 @@
           <th>Format</th><td><code><a href="https://w3id.org/mediatype/text/turtle">text/turtle</a></code></td>
         </tr>
       </table>
+      <table class="props" id="https://linked.data.gov.au/def/bcp/examples">
+        <tr>
+          <td colspan="2"><h3>3. Examples</h3></td>
+        </tr>
+        <tr>
+          <th>Description</th><td>Example RDF files - both valid and invalid - and a Python script implementing validation/td>
+        </tr>        
+        <tr>
+          <th>Artifact</th><td><a href="https://linked.data.gov.au/def/bcp/examples">https://linked.data.gov.au/def/bcp/examples</a></td>
+        </tr>
+        <tr>
+          <th>Role</th><td><code><a href="http://www.w3.org/ns/dx/prof/role/example">role:example</a></code></td>
+        </tr>
+      </table>
       <table class="props" id="https://linked.data.gov.au/def/bcp/repo">
         <tr>
-          <td colspan="2"><h3>3. Profile code repository</h3></td>
+          <td colspan="2"><h3>4. Profile code repository</h3></td>
         </tr>
         <tr>
           <th>Description</th><td>Code repository storing all Profile artifacts</td>
-        </tr>        
+        </tr>
         <tr>
           <th>Artifact</th><td><a href="https://linked.data.gov.au/def/bcp/repo">https://linked.data.gov.au/def/bcp/repo</a></td>
         </tr>
         <tr>
           <th>Role</th><td><code><a href="http://www.w3.org/ns/dx/prof/role/repository">role:repository</a></code></td>
         </tr>
-      </table>             
+      </table>
     </section>    
     <p>&nbsp;</p>
   </div><!-- #content -->

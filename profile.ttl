@@ -10,7 +10,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     a prof:Profile ;
     schema:dateCreated "2025-05-30"^^xsd:date ;
     schema:creator <https://orcid.org/0000-0002-8742-7730> ;
-    schema:dateModified "2025-06-12"^^xsd:date ;
+    schema:dateModified "2025-11-16"^^xsd:date ;
     schema:publisher <https://linked.data.gov.au/org/agldwg> ;
     schema:definition """This is a profile of the taxonomy data model SKOS - i.e. SKOS with additional constraints. It defines some compulsory properties for SKOS's ConceptScheme, Concept and Collection classes and ensures that certain relationships between them are present, e.g. topConceptOf & inScheme linking Concepts to ConceptSchemes. It also requires goes a bit beyond 'pure' SKOS by ensuring that Concepts indicate the ConceptScheme they are defined in, which may be different to the ConceptScheme they re presented in. This allows VocPub-valid SKOS Concepts to be re-used in multiple of vocabularies efficiently.
 
@@ -20,6 +20,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     prof:hasResource 
         <https://linked.data.gov.au/def/bcp/spec> ,
         <https://linked.data.gov.au/def/bcp/validator> ,
+        <https://linked.data.gov.au/def/bcp/examples> ,
         <https://linked.data.gov.au/def/bcp/repo> ;
     prof:isProfileOf
         <https://www.w3.org/TR/vocab-dcat-3/> ,
@@ -54,6 +55,13 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     schema:encodingFormat "text/turtle" ;
     prof:hasArtifact "https://linked.data.gov.au/def/bcp/validator"^^xsd:anyURI ;
     prof:hasRole role:validation
+.
+
+<https://linked.data.gov.au/def/bcp/examples>
+    schema:name "Code repository folder of examples"@en ;
+    schema:description "Example RDF files - both valid and invalid - and a Python script implementing validation"@en ;
+    prof:hasArtifact "https://linked.data.gov.au/def/bcp/examples"^^xsd:anyURI ;
+    prof:hasRole role:example
 .
 
 <https://linked.data.gov.au/def/bcp/repo>
