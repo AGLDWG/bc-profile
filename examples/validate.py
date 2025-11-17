@@ -16,4 +16,7 @@ if len(sys.argv) == 1:
 else:
     dg = Graph().parse(sys.argv[1])
     v = validate(dg + eg, shacl_graph=sg)
-    print(v[0])
+    if v[0]:
+        print("True")
+    else:
+        print(v[2])

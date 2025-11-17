@@ -1,0 +1,25 @@
+# invalid: using DCAT form, mising publisher
+PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX schema: <https://schema.org/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+<https://linked.data.gov.au/dataset/bdr/catalogues/abis-models>
+    a dcat:Resource ;
+    schema:codeRepository "https://github.com/dcceew-bdr/bdr-catalogues/" ;
+    dcterms:contributor <https://kurrawong.ai> ;
+    dcterms:creator <https://linked.data.gov.au/org/dcceew> ;
+    dcterms:created "2025-07-24"^^xsd:date ;
+    dcterms:modified "2025-08-12"^^xsd:date ;
+    dcterms:description "This is a third-level catalogue of the Biodiversity Data Repository containing models used in ABIS" ;
+    dcterms:hasPart
+        <https://linked.data.gov.au/def/nsl> ,
+        <https://linked.data.gov.au/def/abis/rm> ,
+        <https://w3id.org/tern/ontologies/tern> ;
+    dcterms:license <http://purl.org/NET/rdflicense/cc-by4.0> ;
+    dcterms:title "ABIS Models Catalogue" ;
+    # dcterms:publisher <https://linked.data.gov.au/org/dcceew> ;
+    dcterms:source "Some source info" ;
+    schema:version "1" ;
+.

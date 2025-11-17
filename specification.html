@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="en">
+  <meta charset="UTF-8">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link href='//fonts.googleapis.com/css?family=Spartan:300,400' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Bebas+Neue:300,400' rel='stylesheet' type='text/css'>  
+  <link href="style/agldwg.css" rel="stylesheet" type="text/css">
+  <title>Basic Catalogue Profile Specification</title>
+</head>
+<body>
+  <div id="toc">
+    <h4>Table of Contents</h4>
+    <ul>
+      <li><a href="#metadata">Metadata</a></li>
+      <li><a href="#abstract">Abstract</a></li>
+      <li><a href="#namespaces">Namespaces</a></li>
+      <li><a href="#intro">Introduction</a></li>
+      <li>
+        <a href="#reqs">Requirements</a>
+        <ul>
+          <li><a href="#Resource">Resource</a></li>
+          <li><a href="#agent">Agent</a></li>
+        </ul>
+      </li>
+      <li><a href="#references">References</a></li>
+    </ul>
+  </div>
+  <div id="header" style="grid-column:1/4; padding: 0 0 0 20%;">
+      <a href="https://www.linked.data.gov.au">
+        <img alt="AGLDWG Logo" style="width:150px; margin-top:10px" src="style/agldwg-logo-ochre-150.png" />
+      </a>
+  </div><!-- #header -->
+  <div id="content" style="grid-column:2;">
+    <h1>Basic Catalogue Profile - Specification</h1>
+    <section id="metadata">
+      <dl>
+        <dt>URI</dt>
+        <dd><code><a href="https://linked.data.gov.au/def/bcp/spec">https://linked.data.gov.au/def/bcp/spec</a></code></dd>
+        <dt>Title</dt>
+        <dd>Basic Catalogue Profile - Specification Document</dd>
+        <dt>Definition</dt>
+        <dd>
+          <p>This document defines the Basic Catalogue Profile's normative requirements. It is to be used to present the details of the Basic Catalogue Profile's requirements in human-readable form.</p>
+          <p>This document does not provide resources for automated validation. For that, see the <a href="https://linked.data.gov.au/def/bcp/validator">validator</a>.</p>
+        </dd>
+        <dt>Created</dt>
+        <dd>2025-05-30</dd>
+        <dt>Modified</dt>
+        <dd>2025-11-16</dd>
+        <dt>Version IRI</dt>
+        <dd><a href="https://linked.data.gov.au/def/bcp/spec/5.1">https://linked.data.gov.au/def/bcp/spec/5.1</a></dd>
+        <dt>Version Information</dt>
+        <dd>
+          <p>1.0 - first full version</p>
+        </dd>
+        <dt>Creator</dt>
+        <dd><a href="https://orcid.org/0000-0002-8742-7730">Nicholas J. Car</a></dd>
+        <dt>Publisher</dt>
+        <dd><a href="https://linked.data.gov.au/org/agldwg">Australian Government Linked Data Working Group</a></dd>
+        <dt>Further metadata</dt>
+        <dd>This specification is part of the <a href="https://linked.data.gov.au/def/bcp">Basic Catalogue Profile</a>. See that document, the profile's main document, additional metadata.</dd>
+        <dt>Profile URI</dt>
+        <dd><code><a href="https://linked.data.gov.au/def/bcp">https://linked.data.gov.au/def/bcp</a></code></dd>
+        <dt>License</dt>
+        <dd><a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></dd>
+      </dl>
+    </section>
+    <section id="abstract">
+      <h2>Abstract</h2>
+      <p>
+        This is the <em>specification</em> resource of the Basic Catalogue Profile. It provides the normative definitions of requirements, in English, that resources must meet to be conformant to the profile
+      </p>
+      <p>
+        Other profile resources are provided for validation, to give examples and so on. See the <a href="https://linked.data.gov.au/def/bcp">profile definition</a> for a list of those other resources.
+      </p>
+    </section>
+    <section id="namespaces">
+      <h2>Namespaces</h2>
+      <p>
+        This document refers to elements of various ontologies by short codes using namespace prefixes. The prefixes and their corresponding namespaces' URIs are:
+      </p>
+      <dl>
+        <dt>dcat</dt>
+        <dd><code>http://www.w3.org/ns/dcat#</code></dd>
+        <dt>dcterms</dt>
+        <dd><code>http://purl.org/dc/terms/</code></dd>
+        <dt>odrl</dt>
+        <dd><code>http://www.w3.org/ns/odrl/2/</code></dd>
+        <dt>prof</dt>
+        <dd><code>http://www.w3.org/ns/dx/prof/</code></dd>
+        <dt>prov</dt>
+        <dd><code>http://www.w3.org/ns/prov#</code></dd>
+        <dt>reg</dt>
+        <dd><code>http://purl.org/linked-data/registry#></code></dd>
+        <dt>role</dt>
+        <dd><code>http://def.isotc211.org/common/RoleCode/</code></dd>
+        <dt>schema</dt>
+        <dd><code>https://schema.org/</code></dd>
+        <dt>skos</dt>
+        <dd><code>http://www.w3.org/2004/02/skos/core#</code></dd>
+        <dt>rdfs</dt>
+        <dd><code>http://www.w3.org/2000/01/rdf-schema#</code></dd>
+      </dl>
+    </section>
+    <section id="intro">
+      <h2>1. Introduction</h2>
+      <h4>What this is</h4>
+      <p>
+        This document defines a <em>profile</em> of cataloguing standards with the definition of 'profile' coming from the <em>Profiles Vocabulary</em><sup><a href="#prof">ref</a></sup> and it is:
+      </p>
+      <p class="quote">A specification that constrains, extends, combines, or provides guidance or explanation about the usage of other specifications.
+      </p>
+      <p>
+        Here, the <em>other specification</em> being profiled is actually 2: <a href="https://www.w3.org/TR/vocab-dcat-3/">DCAT</a> &amp; <a href="https://schema.org">schema.org</a>.
+      </p>
+      <h4>What it does</h4>
+      <p>
+        In the next section, this document describes how DCAT and schema.org elements must be presented - in certain arrangements wIth respect to one another and with certain predicates to indicate properties - to make a data that conforms to this profile.
+      </p>
+      <p>
+        This specification's rules/requirements - are numbered and <span style="color:darkred;">indicated in red text</span>.
+      </p>
+      <p>
+        This specification defines requirements for the cataloguing of generic resources according to catalogue models ensuring minimum object metadata is provided in particular forms. This allows for basic catalogue operations, such as filtering and order of resources by agents related to them (e.g. <em>publisher</em>), resource coverage (<em>spatial</em> and <em>temporal</em>) and so on.
+      </p>
+      <p>
+        This specification depends on the use of <a href="https://en.wikipedia.org/wiki/Semantic_Web">Semantic Web</a> methods. It mandates that a minimal set of several Semantic Web model elements be used.
+      </p>
+      <p>
+        The models are the <a href="https://www.w3.org">W3C</a>'s <a href="https://www.w3.org/TR/vocab-dcat-3/">Data Catalog Vocabulary, DCAT</a>, and also & <a href="https://schema.org">schema.org</a>, the widely-used, general-purpose web object description vocabulary which also defines DCAT-like data cataloguing elements.
+      </p>
+      <h4>How it is used</h4>
+      <p>
+        Other, more specialised, profiles exist that mandate more specialised Semantic Web models' elements to describe particular kinds of catalogued objects, in particular:
+      </p>
+      <ul>
+        <li><a href="https://linked.data.gov.au/def/ontpub">Ontology Publication Profile, OntPub</a>: to characterise Semantic Web ontologies</li>
+        <li><a href="https://linked.data.gov.au/def/vocpub">Vocabulary Publication Profile, VocPub</a>: to characterise classification vocabularies</li>
+      </ul>
+      <p>
+        These more specialised profiles also mandate the same basic metadata mandated here.
+      </p>
+      <p>
+        This profile is used by multiple Australian government and international catalogues that contain other catalogues and is entirely generic, i.e. the additional constraints are not Australian or government-specific but just ensure certain technical model capabilities in the data.
+      </p>
+      <h4>Updates</h4>
+      <p>
+        This profile is always open to being updated to match modern cataloguing requirements, so if you would like to contribute to or challenge its requirements, please contact its developers via the <a href="#https://linked.data.gov.au/def/bcp/repo">Code Repository</a> which contains an Issues tracker.
+      </p>
+      <h4>Contact</h4>
+      <p>
+        See the <a href="#https://linked.data.gov.au/def/bcp/repo">Code Repository</a>'s README page.
+      </p>
+    </section>
+    <section id="reqs">
+      <h2>2. Requirements</h2>
+      <p>
+        The requirements of this profile are placed primarily on the DCAT's <code>Resource</code> class and schema.org's <code>CreativeWork</code> class which both represent generic things that can be catalogued. In DCAT's case, <code>Resource</code> instances are contained in <code>Catalog</code> isntances, in schema.org's <code>CreativeWork</code> instances are contained in <code>DataCatalogue</code> instances.
+      </p>
+      <p>
+        Apart from constraining predicates on <code>Resource</code> &amp; <code>CreativeWork</code> class instances, this profile also mandates some predicates be present on objects referred to by them, in particular <code><a href="https://www.w3.org/TR/prov-o/#Agent">PROV Agent</a></code> instances - people and organisations - to which <code>Resource</code> &amp; <code>CreativeWork</code> instances are attributed. These must at least have an identifier, a name and be classed as an <code>Agent</code>. See the <a href="#agent">Agent</a> section below.
+      </p>
+      <section id="resource">
+        <h3>2.1 Resource</h3>
+        <p>
+          Resources are instances of either DCAT's <code>Resource</code> class or schema.org's <code>CreativeWork</code> class.
+        </p>
+        <p class="req">
+          <a class="frag" id="2.1.1" href="#2.1.1">&#167;</a>
+          2.1.1 Each resource <em>MUST</em> be identified by a IRI
+        </p>
+        <p>
+          To ensure resources can be catalogued effectively and governed:
+        </p>
+        <p class="req">
+          <a class="frag" id="2.1.2" href="#2.1.2">&#167;</a>
+          2.1.2 Each resource <em>MUST</em> have exactly one name and at least one description indicated using the <code>schema:name</code> or <code>dcterms:title</code> predicate and the <code>schema:description</code> or <code>dcterms:description</code> predicate, respectively that must give textual literal values. Only one definition per language is allowed
+        </p>
+        <p class="req">
+          <a class="frag" id="2.1.3" href="#2.1.3">&#167;</a>
+          2.1.3 Each resource <em>MUST</em> have exactly one created date and exactly one modified date indicated using the <code>schema:dateCreated</code> and <code>schema:dateModified</code> or <code>dcterms:created</code> and <code>dcterms:modified</code> predicates respectively that must be either an <code>xsd:date</code>, <code>xsd:dateTime</code> or <code>xsd:dateTimeStamp</code> literal value
+        </p>
+        <p class="req">
+          <a class="frag" id="2.1.4" href="#2.1.4">&#167;</a>
+          2.1.4 Each resource <em>MUST</em> have at least one creator, indicated using <code>schema:creator</code> or <code>dcterms:creator</code> predicate and exactly one publisher, indicated using <code>schema:publisher</code> or <code>dcterms:publisher</code>, all of which MUST be IRIs indicating instances of <code>schema:Person</code>, or <code>schema:Organization</code>. A <code>prov:qualifiedAttribution</code> predicate indicating an Agent with the <code>prov:hadRole</code> predicate indicating the value <code>role:originator</code> or <code>role:publisher</code> may be used instead of <code>schema:creator</code> &amp; <code>schema:publisher</code>, respectively
+        </p>
+        <p class="req">
+          <a class="frag" id="2.1.5" href="#2.1.5">&#167;</a>
+          2.1.5 The origins of a resource <em>MUST</em> be indicated by at least one of the following predicates: <code>prov:wasDerivedFrom</code>, <code>schema:citation</code>, <code>dcterms:source</code> or <code>skos:historyNote</code>. The first SHOULD only link to other Semantic Wbe objects, the second SHOULD indicate either a URL or citation text and the third and fourth SHOULD present text
+        </p>
+        <p class="req">
+          <a class="frag" id="2.1.6" href="#2.1.6">&#167;</a>
+          2.1.6 The status of the resource, within the catalogue it is presented, <em>SHOULD</em> be given with the predicate <code>schema:status</code> indicating a Concept from the <a href="https://def.isotc211.org/RE/ItemStatus">Registry Item Status Codes</a> vocabulary or an extension of it
+        </p>
+        <p class="req">
+          <a class="frag" id="2.1.7" href="#2.1.7">&#167;</a>
+          2.1.7 High-level theming of a resource <em>SHOULD</em> be given using the <code>schema:keywords</code> or the <code>dcat:theme</code> predicate indicating Concepts from a vocabulary. Text literal values for either predicate <em>SHOULD NOT</em> be used
+        </p>
+        <p class="req">
+          <a class="frag" id="2.1.8" href="#2.1.8">&#167;</a>
+          2.1.8 Any licence pertaining to the reuse of a resource's content <em>SHOULD</em> be given using the <code>schema:license</code> or <code>dcterms:license</code> predicate preferentially indicating the IRI of a license if in RDF form or a literal URL (datatype <code>xsd:anyURI</code>) if online but not in RDF form. If the licence is expressed in text, a literal text value may be given
+        </p>
+        <p class="req">
+          <a class="frag" id="2.1.9" href="#2.1.9">&#167;</a>
+          2.1.9 Any policies other than licenses pertaining to the resource <em>SHOULD</em> be given using the <code>odrl:hasPolicy</code> predicate preferentially indicating the IRI of a policy if in RDF form or a literal URL (datatype <code>xsd:anyURI</code>) if online but not in RDF form. If the policy is expressed in text, a literal text value may be given. If in RDF, the policy should be formulated according to <a href="#odrl">ODRL</a>
+        </p>
+        <p class="req">
+          <a class="frag" id="2.1.10" href="#2.1.10">&#167;</a>
+          2.1.10 The copyright holder for the resource <em>SHOULD</em> be given using the <code>schema:copyrightHolder</code> predicate preferentially indicating the IRI of an Agent or a Blank Node instance of an Agent containing details as per Agent requirements. A <code>prov:qualifiedAttribution</code> predicate indicating an Agent with the <code>prov:hadRole</code> predicate indicating the value <code>role:rightsHolder</code> may be used instead of <code>schema:copyrightHolder</code>
+        </p>
+      </section>
+      <section id="agent">
+        <h3>2.2 Agent</h3>
+        <p>
+          To be consistent with other Semantic Web representations of Agents, vocabularies' associated Agents, creator &amp; publisher must be certain typed RDF values:
+        </p>
+        <p class="req">
+          <a class="frag" id="2.2.1" href="#2.2.1">&#167;</a>
+          2.2.1 Each Agent associated with a resource <em>MUST</em> be typed as an <code>schema:Person</code> or <code>schema:Organization</code>
+        </p>
+        <p>
+          To ensure human readability and association of Agents with their non-Semantic Web (real world) form:
+        </p>
+        <p class="req">
+          <a class="frag" id="2.2.2" href="#2.2.2">&#167;</a>
+          2.2.2 Each Agent <em>MUST</em> give exactly one name with the <code>schema:name</code> predicate indicating a literal text value
+        </p>
+        <p>
+          To ensure that Agents are linked to non-Semantic Web forms of identification:
+        </p>
+        <p class="req">
+          <a class="frag" id="2.2.3" href="#2.2.3">&#167;</a>
+          2.2.2 Each Agent <em>MUST</em> indicate either a <code>schema:url</code> (for organizations) or a <code>schema:email</code> (for people) predicate with a URL or email value
+        </p>
+        <!--
+        <p>
+          <strong>NOTE</strong>: This method of providing identifiers with specialised datatypes is the same as that specified for many literal values in DCAT, such as the <a href=https://www.w3.org/TR/vocab-dcat-3/#Property:resource_update_date">date and date/time formats used for modified date</a>.
+        </p>
+        -->
+      </section>
+    </section>
+    <section id="references">
+      <h2>3. References</h2>
+      <dl>
+        <dt><a id="iso19135"></a>ISO 19135-1:2015</dt>
+        <dd>
+          International Organization for Standardization <em>ISO 19135-1:2015 - Geographic information - Procedures for item registration - Part 1: Fundamentals</em>. 2015. ISO Standard. URL: <a href="https://www.iso.org/standard/54721.html">https://www.iso.org/standard/54721.html</a>
+        </dd>
+        <dt><a id="odrl"></a>ODRL</dt>
+        <dd>W3C ODRL Working Group (eds.). <em>ODRL Information Model 2.2</em>. 15 February 2018. W3C Recommendation. URL: <a href="https://www.w3.org/TR/odrl-model/">https://www.w3.org/TR/odrl-model/</a></dd>
+        <dt><a id="owl"></a>OWL</dt>
+        <dd>
+          W3C ODRL Working Group (eds.). <em>OWL 2 Web Ontology Language Document Overview (Second Edition)</em>. 11 December 2012. W3C Recommendation. URL: <a href="https://www.w3.org/TR/owl2-overview/">https://www.w3.org/TR/owl2-overview/</a>
+        </dd>
+        <dt><a id="prof"></a>PROF</dt>
+        <dd>
+          Rob Atkinson; Nicholas J. Car (eds.). <em>The Profiles Vocabulary</em>. 18 December 2019. W3C Working Group Note. URL: <a href="https://www.w3.org/TR/dx-prof/">https://www.w3.org/TR/dx-prof/</a>
+        </dd>
+        <dt><a id="shacl"></a>SHACL</dt>
+        <dd>
+          World Wide Web Consortium. <em>Shapes Constraint Language (SHACL)</em> 20 July 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/shacl/">https://www.w3.org/TR/shacl/</a>
+        </dd>
+        <dt><a id="skos"></a>SKOS</dt>
+        <dd>
+          Alistair Miles; Sean Bechhofer (eds.). <em>SKOS Simple Knowledge Organization System Reference</em>. 18 August 2009. W3C Recommendation. URL: <a href="https://www.w3.org/TR/skos-reference/">https://www.w3.org/TR/skos-reference/</a>
+        </dd>
+        <dt><a id="skos-primer"></a>SKOS Primer</dt>
+        <dd>
+          Antoine Isaac; Ed Summers (eds.). <em>SKOS Simple Knowledge Organization System Primer</em>. 18 August 2009. W3C Note. URL: <a href="https://www.w3.org/TR/skos-primer/">https://www.w3.org/TR/skos-primer/</a>
+        </dd>
+        <dt><a id="semantic-web"></a>Semantic Web</dt>
+        <dd>
+          World Wide Web Consortium. <em>Semantic Web</em> 2015. Web Page. URL: <a href="https://www.w3.org/standards/semanticweb/">https://www.w3.org/standards/semanticweb/</a>, accessed 2020-06-14
+        </dd>
+        <dt><a id="sparql"></a>SPARQL</dt>
+        <dd>
+          World Wide Web Consortium. <em>SPARQL 1.2 Query Language</em> 29 September 2023. W3C Working Draft. URL: <a href="https://www.w3.org/TR/sparql12-query/">https://www.w3.org/TR/sparql12-query/</a>
+        </dd>
+      </dl>
+    </section>
+</div><!-- #content -->
+  <div id="footer" style="grid-column:1/4; text-align: center;">
+    This web page content is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+  </div><!-- #footer -->
+</body>
+</html>

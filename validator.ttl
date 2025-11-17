@@ -1,6 +1,8 @@
 PREFIX : <https://linked.data.gov.au/def/bcp/validator/>
 PREFIX dcat: <http://www.w3.org/ns/dcat#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX odrl: <http://www.w3.org/ns/odrl/2/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -20,15 +22,17 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     schema:description "The Basic Catalogue Profile validator" ;
     schema:name "Basic Catalogue Profile Validator" ;
     schema:hasPart
-        :Requirement-CW-exists ,
-        :Requirement-CW-name ,
-        :Requirement-CW-desc ,
-        :Requirement-CW-created ,
-        :Requirement-CW-modified ,
-        :Requirement-CW-creator ,
-        :Requirement-CW-publisher ,
-        :Requirement-CW-history ,
-        :Requirement-CW-license ;
+        :req-exists ,
+        :req-name ,
+        :req-description ,
+        :req-created ,
+        :req-modified ,
+        :req-creator ,
+        :req-publisher ,
+        :req-history ,
+        :req-license ,
+        :req-agent-org ,
+        :req-agent-person ;
 .
 
 <https://linked.data.gov.au/org/dcceew>
@@ -49,133 +53,256 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     schema:url "https://kurrawong.ai"^^xsd:anyURI ;
 .
 
-:Requirement-CW-exists
+:req-exists
 	a sh:NodeShape ;
-    sh:targetNode schema:CreativeWork ;
+	sh:or (
+	    [ sh:targetClass schema:CreativeWork ]
+	    [ sh:targetClass dcat:Resource ]
+	) ;
     sh:property [
         sh:path [ sh:inversePath rdf:type ] ;
         sh:minCount 1 ;
-        sh:message "Each graph MUST have at least one catalogued resource instance" ;
+        sh:message "Requirement 2.1.1: Each graph MUST have at least one catalogued resource instance" ;
     ] ;
 .
 
-:Requirement-CW-name
+:req-name
 	a sh:NodeShape ;
-	sh:targetClass schema:CreativeWork ;
-    sh:message "Each catalogued resource MUST have one and only one name which is to be a text literal, indicated using the schema:name predicate" ;
-    sh:property [
-        sh:path schema:name ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:or (
-            [ sh:datatype rdf:langString ]
-            [ sh:datatype xsd:string ]
-        ) ;
-    ] ;
+	sh:targetClass schema:CreativeWork , dcat:Resource ;
+    sh:message "Requirement 2.1.2: Each catalogued resource MUST have exactly one name which is to be a text literal, indicated using the schema:name predicate" ;
+    sh:or (
+        [
+            sh:property [
+                sh:path schema:name ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:or (
+                    [ sh:datatype rdf:langString ]
+                    [ sh:datatype xsd:string ]
+                ) ;
+            ] ;
+        ]
+        [
+            sh:property [
+                sh:path dcterms:title ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:or (
+                    [ sh:datatype rdf:langString ]
+                    [ sh:datatype xsd:string ]
+                ) ;
+            ] ;
+        ]
+    ) ;
 .
 
-:Requirement-CW-desc
+:req-description
 	a sh:NodeShape ;
-	sh:targetClass schema:CreativeWork ;
-    sh:message "Each catalogued resource MUST have one and description which is to be a text literal, indicated using the schema:description predicate" ;
-    sh:property [
-        sh:path schema:description ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:or (
-            [ sh:datatype rdf:langString ]
-            [ sh:datatype xsd:string ]
-        ) ;
-    ] ;
+	sh:targetClass schema:CreativeWork , dcat:Resource ;
+    sh:message "Requirement 2.1.2: Each catalogued resource MUST have exactly one description which is to be a text literal, indicated using the schema:description predicate" ;
+    sh:or (
+        [
+            sh:property [
+                sh:path schema:description ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:or (
+                    [ sh:datatype rdf:langString ]
+                    [ sh:datatype xsd:string ]
+                ) ;
+            ] ;
+        ]
+        [
+            sh:property [
+                sh:path dcterms:description ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:or (
+                    [ sh:datatype rdf:langString ]
+                    [ sh:datatype xsd:string ]
+                ) ;
+            ] ;
+        ]
+    ) ;
 .
 
-# :Requirement-CW-id
-# nothing to validate
-
-:Requirement-CW-created
+:req-created
 	a sh:NodeShape ;
-	sh:targetClass schema:CreativeWork ;
-    sh:message "Requirement D-created: Each catalogued resource MUST have exactly one created date indicated using the schema:dateCreated predicate with a literal value of either xsd:date, xsd:dateTime or xsd:dateTimeStamp type" ;
-    sh:property [
-        sh:path schema:dateCreated ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:or (
-            [ sh:datatype xsd:dateTime ]
-            [ sh:datatype xsd:date ]
-            [ sh:datatype xsd:dateTimeStamp ]
-            [ sh:datatype xsd:gYear ]
-        ) ;
-    ]
+	sh:targetClass schema:CreativeWork , dcat:Resource ;
+    sh:message "Requirement 2.1.3: Each catalogued resource MUST have exactly one created date indicated using the schema:dateCreated predicate with a literal value of either xsd:date, xsd:dateTime or xsd:dateTimeStamp type" ;
+    sh:or (
+        [
+            sh:property [
+                sh:path schema:dateCreated ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:or (
+                    [ sh:datatype xsd:dateTime ]
+                    [ sh:datatype xsd:date ]
+                    [ sh:datatype xsd:dateTimeStamp ]
+                    [ sh:datatype xsd:gYear ]
+                ) ;
+            ]
+        ]
+        [
+            sh:property [
+                sh:path dcterms:created ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:or (
+                    [ sh:datatype xsd:dateTime ]
+                    [ sh:datatype xsd:date ]
+                    [ sh:datatype xsd:dateTimeStamp ]
+                    [ sh:datatype xsd:gYear ]
+                ) ;
+            ]
+        ]
+    ) ;
 .
 
-:Requirement-CW-modified
+:req-modified
 	a sh:NodeShape ;
-	sh:targetClass schema:CreativeWork ;
-    sh:message "Requirement D-modified: Each catalogued resource MUST have exactly one created date indicated using the schema:dateModified predicate with a literal value of either xsd:date, xsd:dateTime or xsd:dateTimeStamp type" ;
-    sh:property [
-        sh:path schema:dateModified ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:or (
-            [ sh:datatype xsd:dateTime ]
-            [ sh:datatype xsd:date ]
-            [ sh:datatype xsd:dateTimeStamp ]
-        ) ;
-    ]
+	sh:targetClass schema:CreativeWork , dcat:Resource ;
+    sh:message "Requirement 2.1.3: Each catalogued resource MUST have exactly one created date indicated using the schema:dateModified predicate with a literal value of either xsd:date, xsd:dateTime or xsd:dateTimeStamp type" ;
+    sh:or (
+        [
+            sh:property [
+                sh:path schema:dateModified ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:or (
+                    [ sh:datatype xsd:dateTime ]
+                    [ sh:datatype xsd:date ]
+                    [ sh:datatype xsd:dateTimeStamp ]
+                    [ sh:datatype xsd:gYear ]
+                ) ;
+            ]
+        ]
+        [
+            sh:property [
+                sh:path dcterms:modified ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:or (
+                    [ sh:datatype xsd:dateTime ]
+                    [ sh:datatype xsd:date ]
+                    [ sh:datatype xsd:dateTimeStamp ]
+                    [ sh:datatype xsd:gYear ]
+                ) ;
+            ]
+        ]
+    ) ;
 .
 
-:Requirement-CW-creator
+:req-creator
 	a sh:NodeShape ;
-    sh:targetClass schema:CreativeWork ;
-	sh:property [
-		sh:path schema:creator ;
-        sh:minCount 1 ;
-		sh:description "Requirement D-creator: Each catalogued resource MUST indicate one or more agents with the schema:creator predicate, typed as an schema:Person or schema:Organization" ;
-        sh:or (
-            [ sh:class schema:Organization ]
-            [ sh:class schema:Person ]
-        ) ;
-	] ;
+    sh:targetClass schema:CreativeWork , dcat:Resource ;
+    sh:description "Requirement 2.1.4: Each catalogued resource MUST indicate one or more agents with the schema:creator predicate, typed as an schema:Person or schema:Organization" ;
+    sh:or (
+        [
+            sh:property [
+                sh:path schema:creator ;
+                sh:minCount 1 ;		
+                sh:or (
+                    [ sh:class schema:Organization ]
+                    [ sh:class schema:Person ]
+                ) ;
+            ] ;        
+        ]
+        [
+            sh:property [
+                sh:path dcterms:creator ;
+                sh:minCount 1 ;		
+                sh:or (
+                    [ sh:class schema:Organization ]
+                    [ sh:class schema:Person ]
+                ) ;
+            ] ;        
+        ]
+    ) ;
 .
 
-:Requirement-CW-publisher
+:req-publisher
 	a sh:NodeShape ;
-    sh:targetClass schema:CreativeWork ;
-	sh:property [
-		sh:path schema:publisher ;
-		sh:description "Requirement D-publisher: Each catalogued resource MUST indicate one or more agents with the schema:publisher predicate, typed as an schema:Person or schema:Organization" ;
-        sh:minCount 1 ;
-        sh:or (
-            [ sh:class schema:Organization ]
-            [ sh:class schema:Person ]
-        ) ;
-	] ;
+    sh:targetClass schema:CreativeWork , dcat:Resource ;
+    sh:description "Requirement 2.1.4: Each catalogued resource MUST indicate one or more agents with the schema:publisher predicate, typed as an schema:Person or schema:Organization" ;
+    sh:or (
+        [
+            sh:property [
+                sh:path schema:publisher ;
+                sh:minCount 1 ;		
+                sh:or (
+                    [ sh:class schema:Organization ]
+                    [ sh:class schema:Person ]
+                ) ;
+            ] ;        
+        ]
+        [
+            sh:property [
+                sh:path dcterms:publisher ;
+                sh:minCount 1 ;		
+                sh:or (
+                    [ sh:class schema:Organization ]
+                    [ sh:class schema:Person ]
+                ) ;
+            ] ;        
+        ]
+    ) ;
 .
 
-:Requirement-CW-history
+:req-history
 	a sh:NodeShape ;
-	sh:targetClass schema:CreativeWork ;
-    sh:message "Requirement D-history: Each catalogued resource SHOULD indicate how it was produced or its origin by use of one of the following predicates: skos:historyNote, schema:citation, prov:wasDerivedFrom" ;
+	sh:targetClass schema:CreativeWork , dcat:Resource ;
+    sh:message "Requirement 2.1.5: Each catalogued resource SHOULD indicate how it was produced or its origin by use of one of the following predicates: prov:wasDerivedFrom, schema:citation, dcterms:source or skos:historyNote" ;
     sh:or (
         :provenance-properties-01
         :provenance-properties-02
+        :provenance-properties-03
         :provenance-properties-04
     ) ;
     sh:severity sh:Warning ;
 .
 
-:Requirement-CW-license
+# status
+
+# theming
+
+:req-license
 	a sh:NodeShape ;
-	sh:targetClass schema:CreativeWork ;
-    sh:message "Requirement D-license: Each catalogued resource MUST indicate a license that defines conditions for its use with the schema:license predicate with the value indicated coming from either the RDF Licenses dataset or being locally-defined odrl:Policy instance" ;
+	sh:targetClass schema:CreativeWork , dcat:Resource ;
+    sh:message "Requirement 2.1.8: Each catalogued resource SHOULD indicate a license that defines conditions for its use with the schema:license predicate with the value indicated coming from either the RDF Licenses dataset or being locally-defined odrl:Policy instance" ;
+    sh:or (
+        [
+            sh:property [
+                sh:path schema:license ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:nodeKind sh:IRI ;
+            ] ;
+        ]
+        [
+            sh:property [
+                sh:path dcterms:license ;
+                sh:minCount 1 ;
+                sh:maxCount 1 ;
+                sh:nodeKind sh:IRI ;
+            ] ;
+        ]   
+    ) 
+.
+
+:req-policies
+	a sh:NodeShape ;
+	sh:targetClass schema:CreativeWork , dcat:Resource ;
+    sh:message "Requirement 2.1.9: Each catalogued resource SHOULD indicate a license that defines conditions for its use with the schema:license predicate with the value indicated coming from either the RDF Licenses dataset or being locally-defined odrl:Policy instance" ;
     sh:property [
-        sh:path schema:license ;
-        sh:minCount 1 ;
+        sh:path odrl:hasPolicy ;
         sh:maxCount 1 ;
         sh:nodeKind sh:IRI ;
-    ]
+    ] ;
 .
+
+# copyright holder
 
 :provenance-properties-01
     a sh:PropertyShape ;
@@ -194,6 +321,16 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     ) ;
 .
 
+:provenance-properties-03
+    a sh:PropertyShape ;
+    sh:path dcterms:source ;
+    sh:minCount 1 ;
+    sh:or (
+        [ sh:datatype rdf:langString ]
+        [ sh:datatype xsd:string ]
+    ) ;
+.
+
 :provenance-properties-04
     a sh:PropertyShape ;
     sh:path skos:historyNote ;
@@ -202,4 +339,28 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
         [ sh:datatype rdf:langString ]
         [ sh:datatype xsd:string ]
     ) ;
+.
+
+:req-agent-org
+	a sh:NodeShape ;
+	sh:targetClass schema:Organization ;
+    sh:message "Requirement 2.2.2: Each Agent MUST indicate either a schema:url (for organizations) or a schema:email (for people) predicate with a URL or email value" ;
+    sh:property [
+        sh:path schema:url ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:anyURI ;
+    ] ;
+.
+
+:req-agent-person
+	a sh:NodeShape ;
+	sh:targetClass schema:Person ;
+    sh:message "Requirement 2.2.2: Each Agent MUST indicate either a schema:url (for organizations) or a schema:email (for people) predicate with a URL or email value" ;
+    sh:property [
+        sh:path schema:email ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:anyURI ;
+    ] ;
 .
