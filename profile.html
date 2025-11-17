@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head lang="en">
+  <meta charset="UTF-8">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+  <link href='//fonts.googleapis.com/css?family=Spartan:300,400' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Bebas+Neue:300,400' rel='stylesheet' type='text/css'>  
+  <link href="style/agldwg.css" rel="stylesheet" type="text/css">
+  <title>Basic Catalogue Profile</title>
+</head>
+<body>
+  <div id="header" style="grid-column:1/4; padding: 0 0 0 20%;">
+      <a href="https://www.linked.data.gov.au">
+        <img alt="AGLDWG Logo" style="width:150px; margin-top:10px" src="style/agldwg-logo-ochre-150.png" />
+      </a>
+  </div><!-- #header -->
+  <div id="content" style="grid-column:2;">
+    <div style="float:right; width:300px; height:200px; border:solid 5px darkred; padding: 10px; font-size: 1.5em; text-align:center; line-height: 1.75em;">
+      If you are looking for the written rules of this Profile, see the<br /><a href="https://linked.data.gov.au/def/bcp/spec">BCP Specification Document</a>!
+    </div>
+    <h1>Basic Catalogue Profile</h1>
+    <section id="metadata">
+      <dl>
+        <dt>URI</dt>
+        <dd><code><a href="https://linked.data.gov.au/def/bcp">https://linked.data.gov.au/def/bcp</a></code></dd>
+        <dt>Title</dt>
+        <dd>Basic Catalogue Profile</dd>
+        <dt>Is Profile of</dt>
+        <dd><a href="https://www.w3.org/TR/vocab-dcat-3/">DCAT</a> & <a href="https://schema.org">schema.org</a></dd>
+        <dt>Definition</dt>
+        <dd>
+          <p>This is a profile that mandates minimal metadata for the cataloguing of (sub)catalogues.</p>
+          <p>It is a profile of the well-known <a href="https://www.w3.org/TR/vocab-dcat-3/">DCAT</a>, the semantic data cataloguing vocabulary standard and also  & <a href="https://schema.org">schema.org</a>, the widely-used, general-purpose web object description vocabulary which also has data cataloguing elements.</p>
+          <p>This profile is used by multiple Australian government and international catalogues that contain other catalogues and is entirely generic, i.e. the additional constraints are not Australian or government-specific but just ensure certain technical model capabilities in the data.</p>
+        </dd>
+        <dt>Created</dt>
+        <dd>2025-05-30</dd>
+        <dt>Modified</dt>
+        <dd>2025-06-12</dd>
+        <dt>Version IRI</dt>
+        <dd><a href="https://linked.data.gov.au/def/bcp/1.0">https://linked.data.gov.au/def/bcp/1.0</a></dd>
+        <dt>Creator</dt>
+        <dd><a href="https://orcid.org/0000-0002-8742-7730">Nicholas J. Car</a></dd>
+        <dt>Publisher</dt>
+        <dd><a href="https://linked.data.gov.au/org/agldwg">Australian Government Linked Data Working Group</a></dd>
+        <dt>Repository</dt>
+        <dd><a href="https://github.com/AGLDWG/bc-profile/">https://github.com/AGLDWG/bcp-profile/</a></dd>
+        <dt><a href="https://w3c.github.io/dx-prof/prof/#Property:hasResource">Profile Resources</a></dt>
+        <dd>
+          <ol>
+            <li><a href="#https://linked.data.gov.au/def/bcp/spec">Specification</a></li>
+            <li><a href="#https://linked.data.gov.au/def/bcp/validator">Validator</a></li>
+            <li><a href="#https://linked.data.gov.au/def/bcp/repo">Profile code repository</a></li>
+          </ol>
+        </dd>
+      </dl>
+    </section>
+    <section id="resources">
+      <h2>Profile Resources</h2>
+      <p>This profile contains the following <code>prof:Resource</code> instances:</p>
+      <table class="props" id="https://linked.data.gov.au/def/bcp/spec">
+        <tr>
+          <td colspan="2"><h3>1. Specification Document</h3></td>
+        </tr>
+        <tr>
+          <th>Description</th><td>The normative, human-readable, listing of profile requirements</td>
+        </tr>           
+        <tr>
+          <th>Artifact</th><td><a href="https://linked.data.gov.au/def/bcp/spec">https://linked.data.gov.au/def/bcp/spec</a></td>
+        </tr>
+        <tr>
+          <th>Role</th><td><code><a href="http://www.w3.org/ns/dx/prof/role/specification">role:specification</a></code></td>
+        </tr>
+        <tr>
+          <th>Conforms</th><td><a href="https://www.w3.org/TR/html52/">HTML 5.2</a></td>
+        </tr>
+        <tr>
+          <th>Format</th><td><code><a href="https://w3id.org/mediatype/text/html">text/html</a></code></td>
+        </tr>
+      </table>
+      <table class="props" id="https://linked.data.gov.au/def/bcp/validator">
+        <tr>
+          <td colspan="2"><h3>2. Validator in SHACL</h3></td>
+        </tr>
+        <tr>
+          <th>Description</th><td>A SHACL Shapes file to be used to test the conformance of RDF data to this profile</td>
+        </tr>
+        <tr>
+          <th>Artifact</th><td><a href="https://linked.data.gov.au/def/bcp/validator">https://linked.data.gov.au/def/bcp/validator</a></td>
+        </tr>
+        <tr>
+          <th>Role</th><td><code><a href="http://www.w3.org/ns/dx/prof/role/validation">role:validation</a></code></td>
+        </tr>
+        <tr>
+          <th>Conforms</th><td><a href="https://www.w3.org/TR/shacl/">SHACL</a></td>
+        </tr>
+        <tr>
+          <th>Format</th><td><code><a href="https://w3id.org/mediatype/text/turtle">text/turtle</a></code></td>
+        </tr>
+      </table>
+      <table class="props" id="https://linked.data.gov.au/def/bcp/repo">
+        <tr>
+          <td colspan="2"><h3>3. Profile code repository</h3></td>
+        </tr>
+        <tr>
+          <th>Description</th><td>Code repository storing all Profile artifacts</td>
+        </tr>        
+        <tr>
+          <th>Artifact</th><td><a href="https://linked.data.gov.au/def/bcp/repo">https://linked.data.gov.au/def/bcp/repo</a></td>
+        </tr>
+        <tr>
+          <th>Role</th><td><code><a href="http://www.w3.org/ns/dx/prof/role/repository">role:repository</a></code></td>
+        </tr>
+      </table>             
+    </section>    
+    <p>&nbsp;</p>
+  </div><!-- #content -->
+  <div class="footer" style="grid-column:1/4; text-align: center;">
+    This web page content is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+  </div><!-- #footer -->
+</body>
+</html>

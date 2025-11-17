@@ -1,0 +1,65 @@
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX prof: <http://www.w3.org/ns/dx/prof/>
+PREFIX role: <http://www.w3.org/ns/dx/prof/role/>
+PREFIX schema: <https://schema.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+
+<https://linked.data.gov.au/def/bcp>
+    a prof:Profile ;
+    schema:dateCreated "2025-05-30"^^xsd:date ;
+    schema:creator <https://orcid.org/0000-0002-8742-7730> ;
+    schema:dateModified "2025-06-12"^^xsd:date ;
+    schema:publisher <https://linked.data.gov.au/org/agldwg> ;
+    schema:definition """This is a profile of the taxonomy data model SKOS - i.e. SKOS with additional constraints. It defines some compulsory properties for SKOS's ConceptScheme, Concept and Collection classes and ensures that certain relationships between them are present, e.g. topConceptOf & inScheme linking Concepts to ConceptSchemes. It also requires goes a bit beyond 'pure' SKOS by ensuring that Concepts indicate the ConceptScheme they are defined in, which may be different to the ConceptScheme they re presented in. This allows VocPub-valid SKOS Concepts to be re-used in multiple of vocabularies efficiently.
+
+    This profile is used for multiple Australian government and international vocabularies and is entirely generic, i.e. the additional constraints are not Australian or government-specific but just ensure certain technical model capabilities in the data."""@en ;
+    schema:name "VocPub profile of SKOS" ;
+    owl:versionIRI <https://linked.data.gov.au/def/bcp/4.10> ;
+    prof:hasResource 
+        <https://linked.data.gov.au/def/bcp/spec> ,
+        <https://linked.data.gov.au/def/bcp/validator> ,
+        <https://linked.data.gov.au/def/bcp/repo> ;
+    prof:isProfileOf
+        <https://www.w3.org/TR/vocab-dcat-3/> ,
+        <https://schema.org> ;
+.
+
+<https://linked.data.gov.au/org/agldwg>
+    a schema:Organization ;
+    schema:name "Australian Government Linked Data Working Group" ;
+    schema:url "https://www.linked.data.gov.au"^^xsd:anyURI ;
+.
+
+<https://orcid.org/0000-0002-8742-7730>
+    a schema:Person ;
+    schema:name "Nicholas J. Car" ;
+    schema:email "nicholas.car@anu.edu.au"^^xsd:anyURI ;
+.
+
+<https://linked.data.gov.au/def/bcp/spec>
+    schema:name "Specification Document"@en ;
+    schema:description "The normative, human-readable, listing of profile requirements"@en ;
+    dcterms:conformsTo <https://www.w3.org/TR/html52/> ;
+    schema:encodingFormat "text/html" ;
+    prof:hasArtifact "https://linked.data.gov.au/def/bcp/spec"^^xsd:anyURI ;
+    prof:hasRole role:specification
+.
+
+<https://linked.data.gov.au/def/bcp/validator>
+    schema:name "Validator in SHACL"@en ;
+    schema:description "A SHACL Shapes file to be used to test the conformance of RDF data to this profile"@en ;
+    dcterms:conformsTo <https://www.w3.org/TR/shacl/> ;
+    schema:encodingFormat "text/turtle" ;
+    prof:hasArtifact "https://linked.data.gov.au/def/bcp/validator"^^xsd:anyURI ;
+    prof:hasRole role:validation
+.
+
+<https://linked.data.gov.au/def/bcp/repo>
+    schema:name "Profile code repository"@en ;
+    schema:description "Code repository storing all Profile artifacts"@en ;
+    prof:hasArtifact "https://linked.data.gov.au/def/bcp/repo"^^xsd:anyURI ;
+    prof:hasRole role:repository
+.
+
