@@ -17,7 +17,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
     a owl:Ontology ;
     schema:dateCreated "2025-05-30"^^xsd:date ;
     schema:creator <http://orcid.org/0000-0002-8742-7730> ;
-    schema:dateModified "2025-11-16"^^xsd:date ;
+    schema:dateModified "2026-11-19"^^xsd:date ;
     schema:publisher <https://linked.data.gov.au/org/dcceew> ;
     schema:description "The Basic Catalogue Profile validator" ;
     schema:name "Basic Catalogue Profile Validator" ;
@@ -294,12 +294,34 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 :req-policies
 	a sh:NodeShape ;
 	sh:targetClass schema:CreativeWork , dcat:Resource ;
-    sh:message "Requirement 2.1.9: Each catalogued resource SHOULD indicate a license that defines conditions for its use with the schema:license predicate with the value indicated coming from either the RDF Licenses dataset or being locally-defined odrl:Policy instance" ;
-    sh:property [
-        sh:path odrl:hasPolicy ;
-        sh:maxCount 1 ;
-        sh:nodeKind sh:IRI ;
+    sh:message "Requirement 2.1.9: Any policies other than licenses pertaining to the resource SHOULD be given using the odrl:hasPolicy predicate preferentially indicating the IRI of a policy if in RDF form or a literal URL (datatype xsd:anyURI) if online but not in RDF form. If the policy is expressed in text, a literal text value may be given. If in RDF, the policy should be formulated according to ODRL" ;
+    sh:property :req-policies-value , :req-policies-text-notice ;
+.
+
+:req-policies-value
+    a sh:PropertyShape ;
+    sh:path odrl:hasPolicy ;
+    sh:or (
+        [ sh:nodeKind sh:IRI ]
+        [ sh:datatype xsd:anyURI ]
+        [ sh:datatype xsd:string ]
+        [ sh:datatype rdf:langString ]
+    ) ;
+    sh:severity sh:Warning ;
+    sh:message "Supply a policy as an IRI, an xsd:anyURI literal, or text." ;
+.
+
+:req-policies-text-notice
+    a sh:PropertyShape ;
+    sh:path odrl:hasPolicy ;
+    sh:not [
+        sh:or (
+            [ sh:datatype xsd:string ]
+            [ sh:datatype rdf:langString ]
+        )
     ] ;
+    sh:severity sh:Info ;
+    sh:message "Policy is supplied as text; prefer a link to a policy where available." ;
 .
 
 # copyright holder
